@@ -19,7 +19,8 @@ WORKDIR /app
 
 RUN addgroup -g 1000 radicale \
     && adduser radicale --home /var/lib/radicale --system --uid 1000 --disabled-password -G radicale \
-    && apk add --no-cache apache2-utils ca-certificates git openssh openssl
+    && apk add --no-cache apache2-utils ca-certificates git openssh openssl \
+    && pip install --no-cache-dir python-dateutil vobject
 
 COPY --chown=radicale:radicale --from=builder /app/venv /app
 
